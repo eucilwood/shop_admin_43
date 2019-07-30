@@ -122,7 +122,7 @@ export default {
 
 </script>
 
-<style scoped lang='less' >
+<style scoped lang='less' j>
 .bread {
   height: 40px;
   background: #d4dae0;
