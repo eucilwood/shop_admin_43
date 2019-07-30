@@ -1,0 +1,43 @@
+<div>
+  <el-breadcrumb separator-class="el-icon-arrow-right" class="bread">
+    <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
+    <el-breadcrumb-item>用户管理</el-breadcrumb-item>
+    <el-breadcrumb-item>用户列表</el-breadcrumb-item>
+  </el-breadcrumb>
+  <el-row :gutter="20">
+    <el-col :span="8">
+      <el-input
+        placeholder="请输入内容"
+        v-model="input3"
+        class="input-with-select"
+      >
+        <el-button
+          slot="append"
+          icon="el-icon-search"
+          @click=" startSearch"
+        ></el-button>
+      </el-input>
+    </el-col>
+    <el-col :span="8">
+      <el-button>添加用户</el-button>
+    </el-col>
+  </el-row>
+
+  <el-table :data="tableData" style="width: 100%">
+    <el-table-column prop="username" label="姓名" width="180">
+    </el-table-column>
+    <el-table-column prop="email" label="邮箱" width="180"> </el-table-column>
+    <el-table-column prop="mobile" label="电话"> </el-table-column>
+    <el-table-column prop="status" label="状态"> </el-table-column>
+    <el-table-column prop="handle" label="操作"> </el-table-column>
+  </el-table>
+  <el-pagination
+    background
+    layout="prev, pager, next"
+    :total="total"
+    :page-size="2"
+    :current-page="pagenum"
+    @current-change="currentChange"
+  >
+  </el-pagination>
+</div>

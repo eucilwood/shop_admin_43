@@ -73,8 +73,10 @@ export default {
         }
 
         axios.post('http://localhost:8888/api/private/v1/login', this.ruleForm).then(res => {
+          console.log(res)
           // console.log(res.data.meta.status)
           if (res.data.meta.status === 200) {
+            localStorage.setItem('token', res.data.data.token)
             console.log('登录成功')
             this.$message({
               message: '恭喜你，登录成功',
