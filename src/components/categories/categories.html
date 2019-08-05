@@ -1,0 +1,48 @@
+<div>
+  <el-button type="success" plain @click="addfenlei">添加分类</el-button>
+  <el-table :data="categoriesTableData" style="width: 100%">
+    <el-table-column type="expand">
+      <template slot-scope="scope">
+        <el-tree :data="scope.row.children" :props="defaultProps"></el-tree>
+      </template>
+    </el-table-column>
+    <el-table-column prop="cat_name" label="分类名称" width="180">
+    </el-table-column>
+
+    <el-table-column prop="cat_deleted" label="是否有效" width="180">
+      <template slot-scope="scope">
+        <span>{{ scope.row.cat_deleted ? '无效' : '有效' }}</span>
+      </template>
+    </el-table-column>
+    <el-table-column prop="cat_level" label="层级">
+      <template slot-scope="scope">
+        <span v-if="scope.row.cat_level==0">
+          一级
+        </span>
+        <span v-else-if="scope.row.cat_level==1">二级</span>
+        <span v-else>三级</span>
+      </template>
+    </el-table-column>
+  </el-table>
+  <el-dialog title="添加分类" :visible.sync="dialogFormVisible">
+    <el-form :model="addCategoriesForm">
+      <el-form-item label="分类名称" :label-width="formLabelWidth">
+        <el-input
+          v-model="addCategoriesForm.cat_name"
+          autocomplete="off"
+        ></el-input>
+      </el-form-item>
+      <el-form-item label="父级名称" :label-width="formLabelWidth">
+        <el-cascader
+          v-model="addCategoriesForm.cat_pid_arr"
+          :options="options"
+          :props="defaultProps1"
+        ></el-cascader>
+      </el-form-item>
+    </el-form>
+    <div slot="footer" class="dialog-footer">
+      <el-button @click="dialogFormVisible = false">取 消</el-button>
+      <el-button type="primary" @click="AddCategories">确 定</el-button>
+    </div>
+  </el-dialog>
+</div>
